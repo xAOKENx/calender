@@ -90,21 +90,23 @@ curl_setopt_array($ch, $options);
 $response = curl_exec($ch);
 curl_close($ch);
 
-$result = json_decode($response);
+$result = json_decode($response,true);
 
 // 結果出力
 echo "<pre>";
 //var_dumpだと配列の中身が見える
 var_dump($result);
 if(is_array($result)){
-  echo "yes";
+  echo "yes<br>";
 }else{
   echo "no";
 };
 
-echo "<br>";
-//以下だとarrayとしか表示されない。
-echo "$result";
+$result1 = $result[0];
+$result2 = $result1[name];
+
+echo "$result2";
+
 
 ?>
 
@@ -113,5 +115,13 @@ echo "$result";
 // 予定追加
 $pdo = new PDO ( 'mysql:host=localhost;dbname=schedule;charset=utf8', 'root', 'root' );
 
+
+?>
+
+<?php
+
+$timestamp = time();
+
+echo "$timestamp";
 
 ?>
